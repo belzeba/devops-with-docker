@@ -1,0 +1,16 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.9$ mkdir logs
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.9$ touch logs/text.log
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.9$ docker run -v "$(pwd)/logs/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
+Starting log output
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+^Cari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.9$

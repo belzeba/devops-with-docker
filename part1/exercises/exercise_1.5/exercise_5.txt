@@ -1,0 +1,43 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker pull devopsdockeruh/simple-web-service:alpine
+alpine: Pulling from devopsdockeruh/simple-web-service
+ba3557a56b15: Pull complete
+1dace236434b: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:dd4d367476f86b7d7579d3379fe446ae5dfce25480903fb0966fc2e5257e0543
+Status: Downloaded newer image for devopsdockeruh/simple-web-service:alpine
+docker.io/devopsdockeruh/simple-web-service:alpine
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED       SIZE
+ubuntu                              latest    3db8720ecbf5   4 days ago    77.9MB
+devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   2 years ago   83MB
+devopsdockeruh/simple-web-service   alpine    fd312adc88e0   2 years ago   15.7MB
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker run -d --name alpine_sws devopsdockeruh/simple-web-service:alpine
+c84780ac6b1f15b8f33a554e59a42222da4f31e0d4b4fa0f00e2164f822c35a5
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker ps
+CONTAINER ID   IMAGE                                      COMMAND                 CREATED         STATUS         PORTS     NAMES
+c84780ac6b1f   devopsdockeruh/simple-web-service:alpine   "/usr/src/app/server"   7 seconds ago   Up 4 seconds             alpine_sws
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker exec -it alpine_sws /bin/sh
+/usr/src/app # tail -f ./
+server    text.log
+/usr/src/app # tail -f ./text.log
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:37:30 +0000 UTC
+2024-02-17 11:37:32 +0000 UTC
+2024-02-17 11:37:34 +0000 UTC
+2024-02-17 11:37:36 +0000 UTC
+2024-02-17 11:37:38 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:37:40 +0000 UTC
+2024-02-17 11:37:42 +0000 UTC
+2024-02-17 11:37:44 +0000 UTC
+2024-02-17 11:37:46 +0000 UTC
+2024-02-17 11:37:48 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:37:50 +0000 UTC
+2024-02-17 11:37:52 +0000 UTC
+2024-02-17 11:37:54 +0000 UTC
+2024-02-17 11:37:56 +0000 UTC
+2024-02-17 11:37:58 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:38:00 +0000 UTC
+2024-02-17 11:38:02 +0000 UTC

@@ -1,0 +1,16 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker run --name stopped_1 -d nginx
+d16d3adef495d41f45e6507ce27dfed2162340350544ce85d1af81f8371d26a2
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker run --name stopped_2 -d nginx
+af2628e93d7799ffb6255ec7bdc9d2b88d67347d3e764916ab7cda47823fa564
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker run --name running_1 -d nginx
+e18219681449f1ad4405882884bcaa4d7f5cb3ad2106f46690de459206fe3c8e
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker stop stopped_1
+stopped_1
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker stop stopped_2
+stopped_2
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+e18219681449   nginx     "/docker-entrypoint.…"   23 seconds ago   Up 21 seconds              80/tcp    running_1
+af2628e93d77   nginx     "/docker-entrypoint.…"   34 seconds ago   Exited (0) 5 seconds ago             stopped_2
+d16d3adef495   nginx     "/docker-entrypoint.…"   40 seconds ago   Exited (0) 8 seconds ago             stopped_1
+f9dc4b487d47   nginx     "/docker-entrypoint.…"   2 days ago       Exited (0) 2 days ago                affectionate_shaw

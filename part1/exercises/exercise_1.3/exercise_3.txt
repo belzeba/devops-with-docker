@@ -1,0 +1,41 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker run -d devopsdockeruh/simple-web-service:ubuntu
+Unable to find image 'devopsdockeruh/simple-web-service:ubuntu' locally
+ubuntu: Pulling from devopsdockeruh/simple-web-service
+5d3b2c2d21bb: Pull complete
+3fc2062ea667: Pull complete
+75adf526d75b: Pull complete
+965d4bbb586a: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:d44e1dce398732e18c7c2bad9416a072f719af33498302b02929d4c112e88d2a
+Status: Downloaded newer image for devopsdockeruh/simple-web-service:ubuntu
+c993df7307f43f088b97b7e0d07f5210e1811d35ae52271d1638677bf4c23f61
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker exec -it /bin/bash
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Execute a command in a running container
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker exec -it c993df7307f43f088b97b7e0d07f5210e1811d35ae52271d1638677bf4        c23f61 /bin/bash
+root@c993df7307f4:/usr/src/app# tail -f ./text.log
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:10:33 +0000 UTC
+2024-02-17 11:10:35 +0000 UTC
+2024-02-17 11:10:37 +0000 UTC
+2024-02-17 11:10:39 +0000 UTC
+2024-02-17 11:10:41 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:10:43 +0000 UTC
+2024-02-17 11:10:45 +0000 UTC
+2024-02-17 11:10:47 +0000 UTC
+2024-02-17 11:10:49 +0000 UTC
+2024-02-17 11:10:51 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:10:53 +0000 UTC
+2024-02-17 11:10:55 +0000 UTC
+2024-02-17 11:10:57 +0000 UTC
+2024-02-17 11:10:59 +0000 UTC
+2024-02-17 11:11:01 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-02-17 11:11:03 +0000 UTC
+2024-02-17 11:11:05 +0000 UTC

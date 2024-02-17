@@ -1,0 +1,43 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker ps -as
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES               SIZE
+e18219681449   nginx     "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes               80/tcp    running_1           1.09kB (virtual 187MB)
+af2628e93d77   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 3 minutes ago             stopped_2           1.09kB (virtual 187MB)
+d16d3adef495   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 3 minutes ago             stopped_1           1.09kB (virtual 187MB)
+f9dc4b487d47   nginx     "/docker-entrypoint.…"   2 days ago      Exited (0) 2 days ago                affectionate_shaw   1.09kB (virtual 187MB)
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+nginx        latest    247f7abff9f7   3 months ago   187MB
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker stop running_1
+running_1
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+e18219681449f1ad4405882884bcaa4d7f5cb3ad2106f46690de459206fe3c8e
+af2628e93d7799ffb6255ec7bdc9d2b88d67347d3e764916ab7cda47823fa564
+d16d3adef495d41f45e6507ce27dfed2162340350544ce85d1af81f8371d26a2
+f9dc4b487d475cd546faab3dfc3d13695be913dc95df3d078dcd4564fb95b12b
+
+Deleted Images:
+untagged: nginx:latest
+untagged: nginx@sha256:c7a6ad68be85142c7fe1089e48faa1e7c7166a194caa9180ddea66345876b9d2
+deleted: sha256:247f7abff9f7097bbdab57df76fedd124d1e24a6ec4944fb5ef0ad128997ce05
+deleted: sha256:d19c2e14315eabd4a822dd2a4bc6fae7e695eb808250d8f602f8219f5848db94
+deleted: sha256:4a7b85ea735027381ceeb667ca753c469333c019a4ae8aa1bbd03584ba116dde
+deleted: sha256:953fd9b8b67a4751344087a36b488ad652167d262af1d7262cca82415976caf3
+deleted: sha256:82eb10af607db10661198ddeb4d53ce682f217796da4045425bf41727708dc2d
+deleted: sha256:babb82373e39285e715426042ec861978fe43fd3071865c976653822eab14eb5
+deleted: sha256:4777512bb7b956a72f11f541f0a55ddcc6fc4e3803f3dfdd8725e578714beb01
+deleted: sha256:ceb365432eec83dafc777cac5ee87737b093095035c89dd2eae01970c57b1d15
+
+Total reclaimed space: 186.7MB
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises$

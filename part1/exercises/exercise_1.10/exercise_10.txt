@@ -1,0 +1,5 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.10$ docker run -d -p 8080:8080 devopsdockeruh/simple-web-service server
+03bcc0280c1e62d55b5fd3a096b837b519fb4e54f4d8315211698360f3d5f512
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.10$ curl localhost:8080
+{"message":"You connected to the following path: /","path":"/"}ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.10$
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.10$
