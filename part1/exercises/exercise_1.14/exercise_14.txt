@@ -1,0 +1,8 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ cp -pr ../exercise_1.12/* .
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ mv Dockerfile Dockerfile-front
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ cp -pr ../exercise_1.13/* .
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ mv Dockerfile Dockerfile-back
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ docker build -f Dockerfile-front . -t frontend-v2
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ docker run -it -d -p 5000:5000 --name frontend-v2 frontend-v2
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ docker build -f Dockerfile-back . -t backend-v2
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.14$ docker run -it -d -p 8080:8080 --name backend-v2 backend-v2

@@ -1,0 +1,31 @@
+# Go docker image
+FROM golang:1.21 as builder
+
+# Workdir
+WORKDIR /app
+
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY example-backend/go.mod example-backend/go.sum ./
+RUN go mod download && go mod verify
+
+# Copy stuff
+COPY example-backend/. .
+
+# Build
+RUN go build -v -o /app/stuff/ ./...
+
+# Run tests (I think this is redundant step so putting it in comment)
+# RUN go test ./...
+
+
+# Go container
+FROM golang:1.21 as container
+
+# Port
+EXPOSE 8080
+ENV PORT=8080
+
+# Copy server to place in PATH
+COPY --from=builder /app/stuff /usr/local/bin
+
+CMD ["server"]

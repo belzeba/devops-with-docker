@@ -1,0 +1,35 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.13$ docker build . -t backend
+[+] Building 1.4s (12/12) FINISHED                                                                                                          docker:default
+ => [internal] load build definition from Dockerfile                                                                                                  0.2s
+ => => transferring dockerfile: 673B                                                                                                                  0.2s
+ => [internal] load .dockerignore                                                                                                                     0.3s
+ => => transferring context: 2B                                                                                                                       0.1s
+ => [internal] load metadata for docker.io/library/golang:1.21                                                                                        0.6s
+ => [builder 1/6] FROM docker.io/library/golang:1.21@sha256:549dd88a1a53715f177b41ab5fee25f7a376a6bb5322ac7abe263480d9554021                          0.0s
+ => [internal] load build context                                                                                                                     0.1s
+ => => transferring context: 913B                                                                                                                     0.0s
+ => CACHED [builder 2/6] WORKDIR /app                                                                                                                 0.0s
+ => CACHED [builder 3/6] COPY example-backend/go.mod example-backend/go.sum ./                                                                        0.0s
+ => CACHED [builder 4/6] RUN go mod download && go mod verify                                                                                         0.0s
+ => CACHED [builder 5/6] COPY example-backend/. .                                                                                                     0.0s
+ => CACHED [builder 6/6] RUN go build -v -o /app/stuff/ ./...                                                                                         0.0s
+ => CACHED [container 2/2] COPY --from=builder /app/stuff /usr/local/bin                                                                              0.0s
+ => exporting to image                                                                                                                                0.0s
+ => => exporting layers                                                                                                                               0.0s
+ => => writing image sha256:a6b1fa1ae20cf6077deb4f69215ab7842cef9922b826f116a27f1146cac78e4c                                                          0.0s
+ => => naming to docker.io/library/backend
+
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.13$ docker run -p 8080:8080 -it --rm --name backend backend
+[Ex 2.4+] REDIS_HOST env was not passed so redis connection is not initialized
+[Ex 2.6+] POSTGRES_HOST env was not passed so postgres connection is not initialized
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+[GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+[GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2024/02/18 - 12:53:13 | 200 |      92.968µs |        10.0.2.2 | GET      "/ping"
