@@ -1,0 +1,12 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.2$ ls -ltrh
+total 4.0K
+-rw-rw-r-- 1 ari ari   0 Mar 16 14:50 exercise_2.txt
+-rw-rw-r-- 1 ari ari 187 Mar 16 16:25 docker-compose.yml
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.2$ curl localhost:8080
+curl: (7) Failed to connect to localhost port 8080 after 2 ms: Connection refused
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.2$ docker compose up -d
+[+] Running 2/2
+ ✔ Network exercise_22_default          Created                                                                                                                                          0.5s
+ ✔ Container simple-web-service-server  Started                                                                                                                                          0.3s
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.2$ curl localhost:8080
+{"message":"You connected to the following path: /","path":"/"}

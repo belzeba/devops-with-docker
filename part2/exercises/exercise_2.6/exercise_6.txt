@@ -1,0 +1,194 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.6$ cp -pr ../exercise_2.4/* .
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.6$ rm -f exercise_4.txt
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.6$ nano docker-compose.yml
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.6$ ls -ltrh
+total 20K
+drwxrwxr-x 4 ari ari 4.0K Feb 17 20:50 example-frontend
+drwxrwxr-x 7 ari ari 4.0K Feb 17 20:50 example-backend
+-rw-rw-r-- 1 ari ari  784 Feb 18 13:03 Dockerfile-front
+-rw-rw-r-- 1 ari ari  675 Feb 18 13:16 Dockerfile-back
+-rw-rw-r-- 1 ari ari    0 Mar 16 14:50 exercise_6.txt
+-rw-rw-r-- 1 ari ari  758 Mar 16 18:41 docker-compose.yml
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.6$ docker compose up
+[+] Running 15/15
+ ✔ postgres 14 layers [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]      0B/0B      Pulled                                                                                                                           59.7s
+   ✔ 8a1e25ce7c4f Already exists                                                                                                                                                         0.0s
+   ✔ 002317ed8722 Pull complete                                                                                                                                                          0.5s
+   ✔ c223965bd9a8 Pull complete                                                                                                                                                          1.0s
+   ✔ 847682431a68 Pull complete                                                                                                                                                          0.8s
+   ✔ 8d29ba654727 Pull complete                                                                                                                                                          1.9s
+   ✔ fd133663e42b Pull complete                                                                                                                                                          1.6s
+   ✔ 13de11c6ecda Pull complete                                                                                                                                                          1.8s
+   ✔ 45bb35744214 Pull complete                                                                                                                                                          2.1s
+   ✔ d4082e63ce2c Pull complete                                                                                                                                                         11.5s
+   ✔ 269f33c511c1 Pull complete                                                                                                                                                          2.4s
+   ✔ 7cbaf3c85093 Pull complete                                                                                                                                                          2.9s
+   ✔ f1c82efa0dcd Pull complete                                                                                                                                                          3.1s
+   ✔ e9d0d3c40657 Pull complete                                                                                                                                                          3.7s
+   ✔ 68bf5c580643 Pull complete                                                                                                                                                          3.8s
+[+] Building 2.4s (25/25) FINISHED                                                                                                                                             docker:default
+ => [frontend internal] load build definition from Dockerfile-front                                                                                                                      0.2s
+ => => transferring dockerfile: 829B                                                                                                                                                     0.0s
+ => [frontend internal] load .dockerignore                                                                                                                                               0.3s
+ => => transferring context: 2B                                                                                                                                                          0.0s
+ => [backend internal] load build definition from Dockerfile-back                                                                                                                        0.2s
+ => => transferring dockerfile: 719B                                                                                                                                                     0.0s
+ => [backend internal] load .dockerignore                                                                                                                                                0.2s
+ => => transferring context: 2B                                                                                                                                                          0.0s
+ => [frontend internal] load metadata for docker.io/library/node:16                                                                                                                      1.2s
+ => [backend internal] load metadata for docker.io/library/golang:1.21                                                                                                                   1.8s
+ => [frontend internal] load build context                                                                                                                                               0.2s
+ => => transferring context: 710.58kB                                                                                                                                                    0.1s
+ => [frontend container 1/5] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b                                                      0.0s
+ => CACHED [frontend container 2/5] WORKDIR /app                                                                                                                                         0.0s
+ => CACHED [frontend build 3/5] COPY example-frontend/. .                                                                                                                                0.0s
+ => CACHED [frontend build 4/5] RUN npm install                                                                                                                                          0.0s
+ => CACHED [frontend build 5/5] RUN npm run build                                                                                                                                        0.0s
+ => CACHED [frontend container 3/5] COPY --from=build /app/node_modules /app/node_modules                                                                                                0.0s
+ => CACHED [frontend container 4/5] COPY --from=build /app/build /app/build                                                                                                              0.0s
+ => CACHED [frontend container 5/5] RUN npm install -g serve                                                                                                                             0.0s
+ => [frontend] exporting to image                                                                                                                                                        0.0s
+ => => exporting layers                                                                                                                                                                  0.0s
+ => => writing image sha256:b78a6fcdefbb9fa73213f20606257d308c01b4832f12e3a4ecc73317ed42c4f5                                                                                             0.0s
+ => => naming to docker.io/library/exercise_26-frontend                                                                                                                                  0.0s
+ => [backend builder 1/6] FROM docker.io/library/golang:1.21@sha256:856073656d1a517517792e6cdd2f7a5ef080d3ca2dff33e518c8412f140fdd2d                                                     0.0s
+ => [backend internal] load build context                                                                                                                                                0.0s
+ => => transferring context: 30.91kB                                                                                                                                                     0.0s
+ => CACHED [backend builder 2/6] WORKDIR /app                                                                                                                                            0.0s
+ => CACHED [backend builder 3/6] COPY example-backend/go.mod example-backend/go.sum ./                                                                                                   0.0s
+ => CACHED [backend builder 4/6] RUN go mod download && go mod verify                                                                                                                    0.0s
+ => CACHED [backend builder 5/6] COPY example-backend/. .                                                                                                                                0.0s
+ => CACHED [backend builder 6/6] RUN go build -v -o /app/stuff/ ./...                                                                                                                    0.0s
+ => CACHED [backend container 2/2] COPY --from=builder /app/stuff /usr/local/bin                                                                                                         0.0s
+ => [backend] exporting to image                                                                                                                                                         0.1s
+ => => exporting layers                                                                                                                                                                  0.0s
+ => => writing image sha256:7f5378a87222052cee81e93a0f3daef5862153c918f45ac6ab33da9b405679d1                                                                                             0.0s
+ => => naming to docker.io/library/exercise_26-backend                                                                                                                                   0.0s
+[+] Running 5/5
+ ✔ Network exercise_26_default       Created                                                                                                                                             0.4s
+ ✔ Container exercise_26-frontend-1  Created                                                                                                                                             0.5s
+ ✔ Container exercise_26-postgres-1  Created                                                                                                                                             0.6s
+ ✔ Container exercise_26-redis-1     Created                                                                                                                                             0.6s
+ ✔ Container exercise_26-backend-1   Created                                                                                                                                             0.1s
+Attaching to exercise_26-backend-1, exercise_26-frontend-1, exercise_26-postgres-1, exercise_26-redis-1
+exercise_26-postgres-1  | The files belonging to this database system will be owned by user "postgres".
+exercise_26-postgres-1  | This user must also own the server process.
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+exercise_26-postgres-1  | The default database encoding has accordingly been set to "UTF8".
+exercise_26-postgres-1  | The default text search configuration will be set to "english".
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | Data page checksums are disabled.
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+exercise_26-postgres-1  | creating subdirectories ... ok
+exercise_26-postgres-1  | selecting dynamic shared memory implementation ... posix
+exercise_26-postgres-1  | selecting default max_connections ...
+exercise_26-postgres-1  | 100
+exercise_26-postgres-1  | selecting default shared_buffers ...
+exercise_26-postgres-1  | 128MB
+exercise_26-postgres-1  | selecting default time zone ...
+exercise_26-redis-1     | 1:C 16 Mar 2024 18:42:41.608 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+exercise_26-redis-1     | 1:C 16 Mar 2024 18:42:41.615 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+exercise_26-redis-1     | 1:C 16 Mar 2024 18:42:41.615 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
+exercise_26-redis-1     | 1:C 16 Mar 2024 18:42:41.615 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+exercise_26-redis-1     | 1:M 16 Mar 2024 18:42:41.617 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+exercise_26-redis-1     | 1:M 16 Mar 2024 18:42:41.617 * monotonic clock: POSIX clock_gettime
+exercise_26-redis-1     | 1:M 16 Mar 2024 18:42:41.618 * Running mode=standalone, port=6379.
+exercise_26-redis-1     | 1:M 16 Mar 2024 18:42:41.619 * Server initialized
+exercise_26-redis-1     | 1:M 16 Mar 2024 18:42:41.660 * Ready to accept connections tcp
+exercise_26-postgres-1  | Etc/UTC
+exercise_26-postgres-1  | creating configuration files ... ok
+exercise_26-postgres-1  | running bootstrap script ...
+exercise_26-postgres-1  | ok
+exercise_26-postgres-1  | performing post-bootstrap initialization ...
+exercise_26-frontend-1  |  INFO  Accepting connections at http://localhost:5000
+exercise_26-postgres-1  | ok
+exercise_26-postgres-1  | syncing data to disk ...
+exercise_26-backend-1   | [Ex 2.4+] Initializing redis client
+exercise_26-backend-1   | [Ex 2.4+] Connection to redis initialized, ready to ping pong.
+exercise_26-backend-1   | [Ex 2.6+] Initializing postgres connection with envs
+exercise_26-backend-1   |               POSTGRES_HOST      postgres,
+exercise_26-backend-1   |               POSTGRES_USER:     postgres,
+exercise_26-backend-1   |               POSTGRES_PASSWORD: postgres,
+exercise_26-backend-1   |               POSTGRES_DATABASE: postgres
+exercise_26-backend-1   |               to postgres:5432
+exercise_26-backend-1   | [Ex 2.6+] Connection to postgres failed! Retrying...
+exercise_26-postgres-1  | ok
+exercise_26-postgres-1  |
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | Success. You can now start the database server using:
+exercise_26-postgres-1  |
+exercise_26-postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+exercise_26-postgres-1  |
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+exercise_26-postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+exercise_26-postgres-1  | waiting for server to start....
+exercise_26-postgres-1  | 2024-03-16 18:42:46.591 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+exercise_26-postgres-1  | 2024-03-16 18:42:46.636 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+exercise_26-postgres-1  | 2024-03-16 18:42:46.659 UTC [51] LOG:  database system was shut down at 2024-03-16 18:42:44 UTC
+exercise_26-postgres-1  | 2024-03-16 18:42:46.669 UTC [48] LOG:  database system is ready to accept connections
+exercise_26-postgres-1  |  done
+exercise_26-postgres-1  | server started
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+exercise_26-postgres-1  |
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | waiting for server to shut down....2024-03-16 18:42:46.805 UTC [48] LOG:  received fast shutdown request
+exercise_26-postgres-1  | 2024-03-16 18:42:46.814 UTC [48] LOG:  aborting any active transactions
+exercise_26-postgres-1  | 2024-03-16 18:42:46.828 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+exercise_26-postgres-1  | 2024-03-16 18:42:46.829 UTC [49] LOG:  shutting down
+exercise_26-postgres-1  | 2024-03-16 18:42:46.852 UTC [49] LOG:  checkpoint starting: shutdown immediate
+exercise_26-postgres-1  | 2024-03-16 18:42:46.893 UTC [49] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.004 s, total=0.064 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/14EAA70, redo lsn=0/14EAA70
+exercise_26-postgres-1  | 2024-03-16 18:42:46.903 UTC [48] LOG:  database system is shut down
+exercise_26-postgres-1  |  done
+exercise_26-postgres-1  | server stopped
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | PostgreSQL init process complete; ready for start up.
+exercise_26-postgres-1  |
+exercise_26-postgres-1  |
+exercise_26-postgres-1  | 2024-03-16 18:42:46.989 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+exercise_26-postgres-1  | 2024-03-16 18:42:46.989 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+exercise_26-postgres-1  | 2024-03-16 18:42:46.989 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+exercise_26-postgres-1  | 2024-03-16 18:42:47.001 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+exercise_26-postgres-1  | 2024-03-16 18:42:47.029 UTC [62] LOG:  database system was shut down at 2024-03-16 18:42:46 UTC
+exercise_26-postgres-1  | 2024-03-16 18:42:47.047 UTC [1] LOG:  database system is ready to accept connections
+exercise_26-backend-1   | [Ex 2.6+] Connection to postgres initialized, ready to ping pong.
+exercise_26-backend-1   | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+exercise_26-backend-1   |
+exercise_26-backend-1   | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+exercise_26-backend-1   |  - using env: export GIN_MODE=release
+exercise_26-backend-1   |  - using code:        gin.SetMode(gin.ReleaseMode)
+exercise_26-backend-1   |
+exercise_26-backend-1   | [GIN-debug] GET    /ping                     --> server/router.pingpong (4 handlers)
+exercise_26-backend-1   | [GIN-debug] GET    /messages                 --> server/controller.GetMessages (4 handlers)
+exercise_26-backend-1   | [GIN-debug] POST   /messages                 --> server/controller.CreateMessage (4 handlers)
+exercise_26-backend-1   | [GIN-debug] Listening and serving HTTP on :8080
+exercise_26-backend-1   |
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 78 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/css/main.eaa5d75e.chunk.css
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 9 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/js/2.43ca3586.chunk.js
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 11 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/js/main.6d1b6583.chunk.js
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 7 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/css/main.eaa5d75e.chunk.css.map
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 200 in 11 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/media/toskalogo.c0f35cf0.svg
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 10 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /static/js/2.43ca3586.chunk.js.map
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 GET /favicon.ico
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 304 in 5 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:11 PM 10.0.2.2 GET /static/js/main.6d1b6583.chunk.js.map
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:10 PM 10.0.2.2 Returned 200 in 74 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:11 PM 10.0.2.2 Returned 200 in 18 ms
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:11 PM 10.0.2.2 GET /manifest.json
+exercise_26-frontend-1  |  HTTP  3/16/2024 6:44:11 PM 10.0.2.2 Returned 304 in 9 ms
+exercise_26-backend-1   | &{1 pong}
+exercise_26-backend-1   | [GIN] 2024/03/16 - 18:44:14 | 200 |    3.234838ms |        10.0.2.2 | GET      "/ping?postgres=true"
+exercise_26-backend-1   | [GIN] 2024/03/16 - 18:44:22 | 204 |      16.735µs |        10.0.2.2 | OPTIONS  "/messages"
+exercise_26-backend-1   | [GIN] 2024/03/16 - 18:44:22 | 200 |   16.415721ms |        10.0.2.2 | POST     "/messages"
+exercise_26-backend-1   | [GIN] 2024/03/16 - 18:44:22 | 200 |    3.069001ms |        10.0.2.2 | GET      "/messages"
+exercise_26-backend-1   | [GIN] 2024/03/16 - 18:44:24 | 200 |    2.616003ms |        10.0.2.2 | GET      "/messages"

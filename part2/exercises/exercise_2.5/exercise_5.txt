@@ -1,0 +1,1 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.5$ docker-compose up -d --scale compute=5

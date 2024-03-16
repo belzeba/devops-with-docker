@@ -1,0 +1,38 @@
+# NodeJS image for building
+FROM node:16 as build
+
+# Create and use /app as working directory
+WORKDIR /app
+
+# Copy all files from frontend project to inside the container
+# NOTE: Dockerfile is located outside the example-frontend -project!
+COPY example-frontend/. .
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+# Install dependencies
+RUN npm install
+
+# Run build
+RUN npm run build
+
+
+# NodeJS image for running things
+FROM node:16 as container
+
+# Create and use /app as working directory
+WORKDIR /app
+
+# Application port
+EXPOSE 5000
+
+# Copy things from builder
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/build /app/build
+
+# Install serve
+RUN npm install -g serve
+
+# Serve application from exposed port
+CMD ["serve", "-s", "-l", "5000", "build"]
+

@@ -1,0 +1,49 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.1$ ls -ltrh
+total 4.0K
+-rw-rw-r-- 1 ari ari   0 Mar 16 14:50 exercise_1.txt
+-rw-rw-r-- 1 ari ari 185 Mar 16 15:51 docker-compose.yml
+-rw-rw-r-- 1 ari ari   0 Mar 16 15:54 text.log
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.1$ docker compose up
+[+] Running 1/0
+ ✔ Container simple-web-service  Created                                                                                                                                                 0.0s
+Attaching to simple-web-service
+simple-web-service  | Starting log output
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+simple-web-service  | Wrote text to /usr/src/app/text.log
+^CGracefully stopping... (press Ctrl+C again to force)
+Aborting on container exit...
+[+] Stopping 1/1
+ ✔ Container simple-web-service  Stopped                                                                                                                                                 0.5s
+canceled
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.1$ ls -ltrh
+total 8.0K
+-rw-rw-r-- 1 ari ari   0 Mar 16 14:50 exercise_1.txt
+-rw-rw-r-- 1 ari ari 185 Mar 16 15:51 docker-compose.yml
+-rw-rw-r-- 1 ari ari 530 Mar 16 15:55 text.log
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.1$ cat text.log
+2024-03-16 15:54:50 +0000 UTC
+2024-03-16 15:54:52 +0000 UTC
+2024-03-16 15:54:54 +0000 UTC
+2024-03-16 15:54:56 +0000 UTC
+2024-03-16 15:54:58 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-03-16 15:55:00 +0000 UTC
+2024-03-16 15:55:02 +0000 UTC
+2024-03-16 15:55:04 +0000 UTC
+2024-03-16 15:55:06 +0000 UTC
+2024-03-16 15:55:08 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-03-16 15:55:10 +0000 UTC
+2024-03-16 15:55:12 +0000 UTC

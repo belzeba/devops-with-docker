@@ -1,0 +1,78 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises$ cd exercise_2.9/
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.9$ docker compose up -d --build
+[+] Building 2.4s (25/25) FINISHED                                                                                                                                             docker:default
+ => [backend internal] load build definition from Dockerfile-back                                                                                                                        0.1s
+ => => transferring dockerfile: 719B                                                                                                                                                     0.0s
+ => [backend internal] load .dockerignore                                                                                                                                                0.2s
+ => => transferring context: 2B                                                                                                                                                          0.0s
+ => [backend internal] load metadata for docker.io/library/golang:1.21                                                                                                                   1.2s
+ => [frontend internal] load build definition from Dockerfile-front                                                                                                                      0.1s
+ => => transferring dockerfile: 830B                                                                                                                                                     0.0s
+ => [frontend internal] load .dockerignore                                                                                                                                               0.1s
+ => => transferring context: 2B                                                                                                                                                          0.0s
+ => [frontend internal] load metadata for docker.io/library/node:16                                                                                                                      1.0s
+ => [backend container 1/2] FROM docker.io/library/golang:1.21@sha256:856073656d1a517517792e6cdd2f7a5ef080d3ca2dff33e518c8412f140fdd2d                                                   0.0s
+ => [backend internal] load build context                                                                                                                                                0.1s
+ => => transferring context: 913B                                                                                                                                                        0.0s
+ => [frontend internal] load build context                                                                                                                                               0.1s
+ => => transferring context: 1.80kB                                                                                                                                                      0.0s
+ => [frontend container 1/5] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b                                                      0.0s
+ => CACHED [backend builder 2/6] WORKDIR /app                                                                                                                                            0.0s
+ => CACHED [backend builder 3/6] COPY example-backend/go.mod example-backend/go.sum ./                                                                                                   0.0s
+ => CACHED [backend builder 4/6] RUN go mod download && go mod verify                                                                                                                    0.0s
+ => CACHED [backend builder 5/6] COPY example-backend/. .                                                                                                                                0.0s
+ => CACHED [backend builder 6/6] RUN go build -v -o /app/stuff/ ./...                                                                                                                    0.0s
+ => CACHED [backend container 2/2] COPY --from=builder /app/stuff /usr/local/bin                                                                                                         0.0s
+ => [backend] exporting to image                                                                                                                                                         0.0s
+ => => exporting layers                                                                                                                                                                  0.0s
+ => => writing image sha256:c1390e408dcc6a854bd8d6476c000b3c6db18cc4b4eb91d63dd717f403d857b8                                                                                             0.0s
+ => => naming to docker.io/library/exercise_29-backend                                                                                                                                   0.0s
+ => CACHED [frontend container 2/5] WORKDIR /app                                                                                                                                         0.0s
+ => CACHED [frontend build 3/5] COPY example-frontend/. .                                                                                                                                0.0s
+ => CACHED [frontend build 4/5] RUN npm install                                                                                                                                          0.0s
+ => CACHED [frontend build 5/5] RUN npm run build                                                                                                                                        0.0s
+ => CACHED [frontend container 3/5] COPY --from=build /app/node_modules /app/node_modules                                                                                                0.0s
+ => CACHED [frontend container 4/5] COPY --from=build /app/build /app/build                                                                                                              0.0s
+ => CACHED [frontend container 5/5] RUN npm install -g serve                                                                                                                             0.0s
+ => [frontend] exporting to image                                                                                                                                                        0.0s
+ => => exporting layers                                                                                                                                                                  0.0s
+ => => writing image sha256:c90103d88e06d77cd24dc77e74ee9a0e345d06f058b5fdfe71c94dcc5c3bda0f                                                                                             0.0s
+ => => naming to docker.io/library/exercise_29-frontend                                                                                                                                  0.0s
+[+] Running 5/5
+ ✔ Container exercise_29-redis-1     Started                                                                                                                                             0.0s
+ ✔ Container exercise_29-postgres-1  Started                                                                                                                                             0.0s
+ ✔ Container exercise_29-backend-1   Started                                                                                                                                             0.0s
+ ✔ Container exercise_29-frontend-1  Started                                                                                                                                             0.0s
+ ✔ Container exercise_29-nginx-1     Started                                                                                                                                             0.0s
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.9$ cd ..
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises$ ls
+exercise_2.1  exercise_2.10  exercise_2.2  exercise_2.3  exercise_2.4  exercise_2.5  exercise_2.6  exercise_2.7  exercise_2.8  exercise_2.9
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises$ cd exercise_2.10/
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.10$ ls
+exercise_10.txt
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.10$ docker run -it --rm --network host networkstatic/nmap localhost
+Unable to find image 'networkstatic/nmap:latest' locally
+latest: Pulling from networkstatic/nmap
+213ec9aee27d: Pull complete
+c7286bfc71dc: Pull complete
+Digest: sha256:a4a64067a87bcd32d3814f65218e4a5bd97e7eb617788c1aea4c086b1ad405a3
+Status: Downloaded newer image for networkstatic/nmap:latest
+Starting Nmap 7.92 ( https://nmap.org ) at 2024-03-16 20:42 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000014s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.36 seconds
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part2/exercises/exercise_2.10$ docker run -it --rm --network host networkstatic/nmap localhost
+Starting Nmap 7.92 ( https://nmap.org ) at 2024-03-16 20:42 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000080s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.57 seconds
