@@ -1,0 +1,32 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.12$ docker build . -t frontend
+[+] Building 1.7s (13/13) FINISHED                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                      0.1s
+ => => transferring dockerfile: 774B                                                                                      0.0s
+ => [internal] load .dockerignore                                                                                         0.1s
+ => => transferring context: 2B                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/node:16                                                                1.3s
+ => [internal] load build context                                                                                         0.1s
+ => => transferring context: 1.80kB                                                                                       0.1s
+ => [build 1/5] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b    0.0s
+ => CACHED [build 2/5] WORKDIR /app                                                                                       0.0s
+ => CACHED [build 3/5] COPY example-frontend/. .                                                                          0.0s
+ => CACHED [build 4/5] RUN npm install                                                                                    0.0s
+ => CACHED [build 5/5] RUN npm run build                                                                                  0.0s
+ => CACHED [container 3/5] COPY --from=build /app/node_modules /app/node_modules                                          0.0s
+ => CACHED [container 4/5] COPY --from=build /app/build /app/build                                                        0.0s
+ => CACHED [container 5/5] RUN npm install -g serve                                                                       0.0s
+ => exporting to image                                                                                                    0.0s
+ => => exporting layers                                                                                                   0.0s
+ => => writing image sha256:b5aff04f9bb1f7628507ac67b063214489e6dd2469bebc9e6704e5fddf8bb361                              0.0s
+ => => naming to docker.io/library/frontend                                                                               0.0s
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.12$ docker run -it -p 5000:5000 --name frontend frontend
+ ERROR  Cannot copy server address to clipboard: Couldn't find the `xsel` binary and fallback didn't work. On Debian/Ubuntu you can install xsel with: sudo apt install xsel.
+
+   ┌────────────────────────────────────────┐
+   │                                        │
+   │   Serving!                             │
+   │                                        │
+   │   - Local:    http://localhost:5000    │
+   │   - Network:  http://172.17.0.2:5000   │
+   │                                        │
+   └────────────────────────────────────────┘

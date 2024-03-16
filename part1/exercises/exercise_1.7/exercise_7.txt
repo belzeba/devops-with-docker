@@ -1,0 +1,13 @@
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.7$ docker build . -t exercise_1.7
+ari@turkuamk-vm:~/docker-assignments/devops-with-docker/part1/exercises/exercise_1.7$ docker run -it --name exercise_1.7_container exercise_1.7
+Input website:
+google.com
+Searching..
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+Input website:
+
